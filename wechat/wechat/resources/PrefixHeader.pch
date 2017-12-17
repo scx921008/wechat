@@ -1,0 +1,186 @@
+//
+//  PrefixHeader.pch
+//  weibo
+//
+//  Created by sangcixiang on 17/1/3.
+//  Copyright © 2017年 sangcixiang. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#pragma mark - 头文件
+#import "AppDelegate.h"
+#import "AppUrl.h"
+#import "UserModel.h"
+#import "HTTPTools.h"
+#import "TQLoadingHUD.h"
+#import "CacheManager.h"
+#import "FriendsManger.h"
+
+#import "UIView+CALayer.h"
+#import "UIView+Frame.h"
+#import "NSDate+Extension.h"
+#import "UIImageView+Extension.h"
+#import "NSString+Extension.h"
+#import "UIImage+Extension.h"
+#import "UIViewController+Extension.h"
+#import "UITextView+Placeholder.h"
+#import "MBProgressHUD+MJ.h"
+
+
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <Masonry/Masonry.h>
+#import <AFNetworking/AFNetworking.h>
+#import <Hyphenate/Hyphenate.h>
+#import <MJExtension/MJExtension.h>
+
+#pragma mark - APP全局配置
+
+#define ProjectName         @"Wechat"
+
+
+
+/** 用户信息 */
+#define UserPath [PathDocument stringByAppendingPathComponent:@"user.archiver"]
+
+/* debug和release设置 */
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(...)
+#define debugMethod()
+#endif
+
+#pragma mark -  缓存数据文件
+
+#pragma mark - APP常用宽高
+
+#define NotificationCenter [NSNotificationCenter defaultCenter]
+
+#define sharedApp (AppDelegate *) [[UIApplication sharedApplication] delegate]
+
+#define KeyWindow [UIApplication sharedApplication].keyWindow
+
+#define ScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+
+#define ScaleH ScreenWidth / 320
+#define ScaleV ScreenHeight / 568
+
+//状态栏高度
+#define StatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+#define NavBarHeight 44.0
+//底部tabbar高度
+#define TabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)
+//整个导航栏高度
+#define TopHeight (StatusBarHeight + NavBarHeight)
+
+#define PlayHeight 9 * ScreenWidth / 16
+
+#define ZoomHeight(height) (ScreenWidth/320) * height
+
+#pragma mark - 字体大小
+#define Font20 [UIFont systemFontOfSize:20]
+#define Font18 [UIFont systemFontOfSize:18]
+#define Font17 [UIFont systemFontOfSize:17]
+#define Font16 [UIFont systemFontOfSize:16]
+#define Font15 [UIFont systemFontOfSize:15]
+#define Font14 [UIFont systemFontOfSize:14]
+#define Font12 [UIFont systemFontOfSize:12]
+#define Font10 [UIFont systemFontOfSize:10]
+
+
+
+#pragma mark - 颜色配置
+
+/** 随机颜色  */
+#define RandomColor [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0]
+/**  清除颜色 */
+#define ClearColor [UIColor clearColor]
+/**  RGB */
+#define RGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define RGBAColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(r)/255.0 blue:(r)/255.0 alpha:a]
+#define HexRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+// 2.获得RGB颜色
+#define RGBA(r, g, b, a)                    [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define RGB(r, g, b)                        RGBA(r, g, b, 1.0f)
+// 视图背景颜色
+#define kLineBackGroundGrayColor RGB(230,230,230)
+#define GroupTableViewColor  RGB(242,245,245)
+
+#define viewBackgroundColor  HexRGB(0xF2F5F5)
+#define navColor             RGB(38,38,38)
+#define mainColor            HexRGB(0x04be02)
+
+#define GlobalTextColor      RGB(66,66,66)
+
+#define hotPinkColor         RGB(255, 105, 180) //粉红烧
+#define DarkGrayColor             [UIColor darkGrayColor]  //深灰色
+#define gray                 RGB(105,105,105)   //暗淡灰色
+#define silver               RGB(192,192,192)   //银白色
+#define drakOrange           RGB(255,140,0)     //橙色
+#define chocllateColor       RGB(210,105,30)    //屎黄
+#define slateBlueColor       RGB(106,90,205)    //暗蓝灰色
+#define BlueColor            RGB(0,168,255)
+#define OrangeColor          RGB(251,140,38)
+#define YellowColor          RGB(255,226,2)
+#define WhiteColor           RGB(255,255,255)
+#define BlackColor80         RGB(80,80,80)
+#define BlackColor29         RGB(29,29,29)
+#define BlackColor91         RGB(91,91,91)
+#define GrayColor105         RGB(105,105,105)
+#define GrayColor186         RGB(186,186,186)
+#define GrayColor174         RGB(174,174,175)
+
+#define HomePageBlackColor   RGB(237,237,237)
+
+#pragma mark - 弱引用
+/**  弱引用 */
+#define WeakSelf(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+#pragma mark - View
+
+
+#pragma mark - 文件路径
+/** 沙盒Cache  */
+#define PathCache [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
+
+//获取temp
+#define PathTemp NSTemporaryDirectory()
+
+//获取沙盒 Document
+#define PathDocument [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
+
+#pragma mark - 单例
+/** 单例  */
+// .h
+#define singleton_interface(class) + (instancetype)shared##class;
+
+// .m
+#define singleton_implementation(class) \
+static class *_instance; \
+\
++ (id)allocWithZone:(struct _NSZone *)zone \
+{ \
+static dispatch_once_t onceToken; \
+dispatch_once(&onceToken, ^{ \
+_instance = [super allocWithZone:zone]; \
+}); \
+\
+return _instance; \
+} \
+\
++ (instancetype)shared##class \
+{ \
+if (_instance == nil) { \
+_instance = [[class alloc] init]; \
+} \
+\
+return _instance; \
+}
+
+
+
+
+#endif /* PrefixHeader_pch */
