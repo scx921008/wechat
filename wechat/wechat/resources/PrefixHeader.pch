@@ -8,6 +8,13 @@
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
+
+#ifdef __OBJC__
+
+    #import <UIKit/UIKit.h>
+
+#endif
+
 #pragma mark - 头文件
 #import "AppDelegate.h"
 #import "AppUrl.h"
@@ -27,7 +34,7 @@
 #import "UITextView+Placeholder.h"
 #import "MBProgressHUD+MJ.h"
 
-
+#import <MJRefresh/MJRefresh.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <Masonry/Masonry.h>

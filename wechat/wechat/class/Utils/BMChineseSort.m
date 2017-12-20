@@ -283,7 +283,7 @@
 }
 
 
-static char firstLetterArray[20902] =
+static char firstLetterArray1[20902] =
 "ydkqsxnwzssxjbymgcczqpssqbycdscdqldylybssjgyqzjjfgcclzznwdwzjljpfyynnjjtmynzwzhflzppqhgccyynmjqyxxgd"
 "nnsnsjnjnsnnmlnrxyfsngnnnnqzggllyjlnyzssecykyyhqwjssggyxyqyjtwktjhychmnxjtlhjyqbyxdldwrrjnwysrldzjpc"
 "bzjjbrcfslnczstzfxxchtrqggddlyccssymmrjcyqzpwwjjyfcrwfdfzqpyddwyxkyjawjffxjbcftzyhhycyswccyxsclcxxwz"
@@ -498,7 +498,7 @@ char pinyinFirstLetter(unsigned short hanzi)
 {
     int index = hanzi - 19968;
     if (index >= 0 && index <= 20902){
-        return firstLetterArray[index];
+        return firstLetterArray1[index];
     }
     else{
         return '#';

@@ -11,21 +11,37 @@
 #import "BMChineseSort.h"
 #import "ContactsIndexView.h"
 #import "ChatViewController.h"
-@interface ContactsController ()<ContactsIndexViewDelegate>
+#import "EaseMessageViewController.h"
+@interface ContactsController ()<ContactsIndexViewDelegate,UISearchResultsUpdating>
 //排序后的出现过的拼音首字母数组
+
+@property (nonatomic,strong) UISearchController *searchController;
 @property(nonatomic,strong)NSMutableArray *indexArray;
 @property (nonatomic,strong) ContactsIndexView *indexView;
+
 @end
 
 @implementation ContactsController
-- (instancetype)initWithStyle:(UITableViewStyle)style {
-    return [super initWithStyle:UITableViewStylePlain];
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self loadFriends];
+}
+-(void)initSubView{
+    [super initSubView];
+    
+    // 创建UISearchController, 这里使用当前控制器来展示结果
+    UISearchController *search = [[UISearchController alloc]initWithSearchResultsController:nil];
+    // 设置结果更新代理
+    search.searchResultsUpdater = self;
+    search.searchBar.barTintColor = [UIColor groupTableViewBackgroundColor];
+    // 因为在当前控制器展示结果, 所以不需要这个透明视图
+    search.dimsBackgroundDuringPresentation = YES;
+    self.searchController = search;
+    // 将searchBar赋值给tableView的tableHeaderView
+    self.tableView.tableHeaderView = search.searchBar;
     [self.tableView registerNib:[UINib nibWithNibName:@"ContactsTableViewCell" bundle:nil] forCellReuseIdentifier:@"ContactsTableViewCell"];
+    
 }
 
 -(void)loadFriends{
@@ -42,7 +58,6 @@
             }
         }
         [self addIndexView];
-        
     }];
 }
 
@@ -51,8 +66,14 @@
     CGFloat y = (ScreenHeight - indexHeight)/2;
     self.indexView = [[ContactsIndexView alloc]initWithFrame:CGRectMake(ScreenWidth - 30, y,20, indexHeight) withNames:self.indexArray];
     self.indexView.delegate = self;
-    [self.view.superview insertSubview:self.indexView aboveSubview:self.tableView];
-    [self.tableView reloadData];
+    [self.view insertSubview:self.indexView aboveSubview:self.tableView];
+    [self reloadData];
+}
+#pragma mark - UISearchResultsUpdating
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    
+    NSString *inputStr = searchController.searchBar.text ;
+    NSLog(@"%@",inputStr);
 }
 #pragma mark -- ContactsIndexViewDelegate
 
@@ -75,8 +96,9 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UserModel *friend = self.dataSource[indexPath.section][indexPath.row];
     ChatViewController *chat = [ChatViewController new];
-    chat.friends = self.dataSource[indexPath.section][indexPath.row];
+    chat.friends = friend;
     [self pushViewController:chat];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

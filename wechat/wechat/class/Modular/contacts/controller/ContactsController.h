@@ -6,8 +6,10 @@
 //  Copyright © 2017年 桑赐相. All rights reserved.
 //
 
-#import "BaseSearchTableViewController.h"
+#import "BaseTableViewController.h"
 
-@interface ContactsController : BaseSearchTableViewController
+@interface ContactsController : BaseTableViewController
+
+
 
 @end

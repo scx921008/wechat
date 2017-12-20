@@ -6,8 +6,11 @@
 //  Copyright © 2017年 桑赐相. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "BaseTableViewController.h"
 
-@interface ChatViewController : BaseViewController
-@property (nonatomic,strong) UserModel *friends;
+@interface ChatViewController : BaseTableViewController
+
+
+- (instancetype)initWithUser:(UserModel *)user chatType:(EMConversationType)chatType;
+
 @end

@@ -70,17 +70,17 @@
                 <constraint firstItem="YJn-16-TTC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Zu4-tv-i22"/>
                 <constraint firstItem="JJj-d4-kSF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="k2h-VG-lrX"/>
                 <constraint firstItem="0TM-KW-BTL" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="lgk-kr-UO2"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JJj-d4-kSF" secondAttribute="trailing" constant="10" id="xnt-vH-z45"/>
+                <constraint firstAttribute="trailing" secondItem="JJj-d4-kSF" secondAttribute="trailing" constant="10" id="xnt-vH-z45"/>
                 <constraint firstItem="YJn-16-TTC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="zep-cf-LRt"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <viewLayoutGuide key="safeArea" id="JI4-0g-Dx6"/>
             <connections>
                 <outlet property="voiceBtn" destination="YJn-16-TTC" id="Uln-28-Z23"/>
             </connections>
-            <point key="canvasLocation" x="-170" y="116"/>
+            <point key="canvasLocation" x="-48" y="118"/>
         </view>
     </objects>
     <resources>

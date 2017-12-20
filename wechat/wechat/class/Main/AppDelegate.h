@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #define NotificationNameNetChange @"NotificationNameNetChange"
 #define NotificationMessagesDidReceive @"NotificationMessagesDidReceive"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
