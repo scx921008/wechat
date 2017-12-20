@@ -11,7 +11,7 @@
 #import "BMChineseSort.h"
 #import "ContactsIndexView.h"
 #import "ChatViewController.h"
-#import "EaseMessageViewController.h"
+//#import "EaseMessageViewController.h"
 @interface ContactsController ()<ContactsIndexViewDelegate,UISearchResultsUpdating>
 //排序后的出现过的拼音首字母数组
 
@@ -97,8 +97,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UserModel *friend = self.dataSource[indexPath.section][indexPath.row];
-    ChatViewController *chat = [ChatViewController new];
-    chat.friends = friend;
+    ChatViewController *chat = [[ChatViewController alloc]initWithUser:friend chatType:EMConversationTypeChat];
     [self pushViewController:chat];
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

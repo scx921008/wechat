@@ -9,6 +9,7 @@
 #import "FindController.h"
 #import "FindTableViewCell.h"
 #import "FindModel.h"
+#import "FriendsCircleController.h"
 @interface FindController ()
 
 @end
@@ -42,6 +43,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.section== 0){
+        if(indexPath.row == 0){
+            [self pushViewController:[FriendsCircleController sharedFriendsCircleController]];
+        }
+    }
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [UIView new];

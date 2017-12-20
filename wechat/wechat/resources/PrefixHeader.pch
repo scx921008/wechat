@@ -34,14 +34,16 @@
 #import "UITextView+Placeholder.h"
 #import "MBProgressHUD+MJ.h"
 
+
+#import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
+#import <MJExtension/MJExtension.h>
+#import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import <Masonry/Masonry.h>
-#import <AFNetworking/AFNetworking.h>
-#import <Hyphenate/Hyphenate.h>
-#import <MJExtension/MJExtension.h>
 
+
+#import <Hyphenate/Hyphenate.h>
 #pragma mark - APP全局配置
 
 #define ProjectName         @"Wechat"
