@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2951452B1FEC102300359F09 /* RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2951452A1FEC102300359F09 /* RefreshView.m */; };
 		29E571031FE7FF840064B321 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E571021FE7FF840064B321 /* BaseTableViewController.m */; };
 		29E572A41FE80E860064B321 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E572A31FE80E7F0064B321 /* AVFoundation.framework */; };
 		29E572A61FE80EAF0064B321 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E572A51FE80EA50064B321 /* UIKit.framework */; };
@@ -19,7 +20,6 @@
 		29FC05EB1FE651B100EE7292 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC05E21FE651B100EE7292 /* main.m */; };
 		29FC05F81FE6525300EE7292 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 29FC05F21FE6525200EE7292 /* AppDelegate.mm */; };
 		29FC05F91FE6525300EE7292 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC05F41FE6525200EE7292 /* ViewController.m */; };
-		29FC05FF1FE6528800EE7292 /* public in Resources */ = {isa = PBXBuildFile; fileRef = 29FC05FE1FE6528800EE7292 /* public */; };
 		29FC061E1FE6536700EE7292 /* EdgeUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC06071FE6536700EE7292 /* EdgeUILabel.m */; };
 		29FC061F1FE6536700EE7292 /* NSData+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC06091FE6536700EE7292 /* NSData+Extension.m */; };
 		29FC06201FE6536700EE7292 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC060B1FE6536700EE7292 /* NSDate+Extension.m */; };
@@ -78,6 +78,8 @@
 
 /* Begin PBXFileReference section */
 		039282B7BCA8C695D3164DE5 /* Pods-wechat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wechat.release.xcconfig"; path = "Pods/Target Support Files/Pods-wechat/Pods-wechat.release.xcconfig"; sourceTree = "<group>"; };
+		295145291FEC102300359F09 /* RefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefreshView.h; sourceTree = "<group>"; };
+		2951452A1FEC102300359F09 /* RefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefreshView.m; sourceTree = "<group>"; };
 		29E571011FE7FF840064B321 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		29E571021FE7FF840064B321 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		29E572A31FE80E7F0064B321 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -96,7 +98,6 @@
 		29FC05F21FE6525200EE7292 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		29FC05F31FE6525200EE7292 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		29FC05F41FE6525200EE7292 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		29FC05FE1FE6528800EE7292 /* public */ = {isa = PBXFileReference; lastKnownFileType = text; path = public; sourceTree = "<group>"; };
 		29FC06041FE6530F00EE7292 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		29FC06061FE6536700EE7292 /* EdgeUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EdgeUILabel.h; sourceTree = "<group>"; };
 		29FC06071FE6536700EE7292 /* EdgeUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EdgeUILabel.m; sourceTree = "<group>"; };
@@ -339,7 +340,6 @@
 				29FC06971FE692B100EE7292 /* ALLoadingView */,
 				29FC06951FE6929D00EE7292 /* TQLoadingHUD.h */,
 				29FC06941FE6929D00EE7292 /* TQLoadingHUD.m */,
-				29FC05FE1FE6528800EE7292 /* public */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -462,6 +462,8 @@
 				29FC06641FE662B800EE7292 /* FindTableViewCell.xib */,
 				29EA696A1FEABB9400AB1DF1 /* FriendsCircleHeaderView.h */,
 				29EA696B1FEABB9400AB1DF1 /* FriendsCircleHeaderView.m */,
+				295145291FEC102300359F09 /* RefreshView.h */,
+				2951452A1FEC102300359F09 /* RefreshView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -687,7 +689,6 @@
 				29FC05E81FE651B100EE7292 /* Assets.xcassets in Resources */,
 				29FC06BF1FE6BD3300EE7292 /* ContactsTableViewCell.xib in Resources */,
 				29FC05E91FE651B100EE7292 /* LaunchScreen.storyboard in Resources */,
-				29FC05FF1FE6528800EE7292 /* public in Resources */,
 				29FC06711FE66EAC00EE7292 /* MeInfoTableCell.xib in Resources */,
 				29FC05EA1FE651B100EE7292 /* Info.plist in Resources */,
 				29FC06861FE6758A00EE7292 /* LoginViewController.xib in Resources */,
@@ -768,6 +769,7 @@
 				29FC06D41FE6D83600EE7292 /* ChatViewController.m in Sources */,
 				29FC06BE1FE6BD3300EE7292 /* ContactsTableViewCell.m in Sources */,
 				29FC06C51FE6C7D100EE7292 /* ContactsIndexView.m in Sources */,
+				2951452B1FEC102300359F09 /* RefreshView.m in Sources */,
 				29FC067A1FE6701200EE7292 /* MeTableViewCell.m in Sources */,
 				29FC064C1FE6587100EE7292 /* MeController.m in Sources */,
 				29FC06201FE6536700EE7292 /* NSDate+Extension.m in Sources */,

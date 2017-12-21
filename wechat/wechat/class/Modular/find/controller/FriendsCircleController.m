@@ -8,13 +8,15 @@
 
 #import "FriendsCircleController.h"
 #import "FriendsCircleHeaderView.h"
+#import "RefreshView.h"
 @interface FriendsCircleController (){
     CGFloat _beginOffsetY;
     Boolean _isRefresh;
+    Boolean _viewDidAppear;
 }
 @property (nonatomic,strong) FriendsCircleHeaderView *headerView;
-@property (nonatomic,strong) UIView *refreshView;
-@property (nonatomic,strong) UIImageView *refreshImage;
+@property (nonatomic,strong) RefreshView *refreshView;
+
 @end
 
 @implementation FriendsCircleController
@@ -23,26 +25,38 @@ singleton_implementation(FriendsCircleController)
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
 }
 
 -(void)initSubView{
     [super initSubView];
     self.view.backgroundColor = HexRGB(0x2D3132);
+    self.navigationItem.title = @"朋友圈";
     self.tableView.mj_header = nil;
     self.tableView.mj_footer = nil;
     self.tableView.contentInset = UIEdgeInsetsMake(270, 0, 0, 0);
     [self.tableView addSubview:self.headerView];
+
+    self.refreshView = [[RefreshView alloc]initWithFrame:CGRectMake(20,TopHeight - 30, 30, 30)];
     
-    
-    self.refreshView = [[UIView alloc]initWithFrame:CGRectMake(20,TopHeight - 30, 30, 30)];
     [self.view addSubview:self.refreshView];
-    self.refreshImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-    self.refreshImage.image = [UIImage imageNamed:@"AlbumReflashIcon"];
-    [self.refreshView addSubview:self.refreshImage];
+    
+    UIButton *button  = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[UIImage imageNamed:@"barbuttonicon_Camera"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(postStatus) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = rightItem;
 }
 
+-(void)postStatus{
+    [self.refreshView endRefresh];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.refreshView.y = TopHeight - 30;
+    }];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    _viewDidAppear = YES;
+}
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     _beginOffsetY = scrollView.contentOffset.y;
 }
@@ -50,17 +64,14 @@ singleton_implementation(FriendsCircleController)
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat offsetY = scrollView.contentOffset.y;
     NSInteger y = (NSInteger)(_beginOffsetY-offsetY);
-    NSLog(@"%ld",(long)y);
-    if(y < 50 && !_isRefresh){
+    [self.refreshView setRotation:y];
+    if(y < 60 && !self.refreshView.isRefresh){
         self.refreshView.y = (TopHeight + y) - 30;
     }else{
-        [self refresh];
+        if (_viewDidAppear) {
+            [self.refreshView startRefresh];
+        }
     }
-    self.refreshImage.transform = CGAffineTransformMakeRotation(-M_PI/180*y*5);
-}
-
--(void)refresh{
-    NSLog(@"刷新");
 }
 
 
@@ -71,6 +82,10 @@ singleton_implementation(FriendsCircleController)
     
     return [UITableViewCell new];
 }
+
+
+
+
 
 
 -(FriendsCircleHeaderView *)headerView{
