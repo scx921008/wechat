@@ -20,23 +20,33 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
     [self getSystemInfo];
     [self startLocation];
     [self initHyphenateLite];
     
-    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    EMOptions *options = [EMClient sharedClient].options;
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *account = [userDefaults objectForKey:@"account"];
-    NSString *pasword = [userDefaults objectForKey:@"password"];
-    if (options.isAutoLogin) {
-        self.window.rootViewController = [TabBarController new];
-        [UserModel login:account withPassword:pasword callback:nil];
+    
+    NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+    EMOptions *options = [[EMClient sharedClient] options];
+    AccountModel *account = [AccountModel sharedAccount];
+    /** 账号是否存在  IM是否自动登入 */
+    if (account.token && options.isAutoLogin) {
+        /** 账号是否过期 */
+        if (account.expiry_time < time) {
+            self.window.rootViewController = [LoginViewController new];
+        }else{
+            self.window.rootViewController = [TabBarController new];
+        }
     }else{
         self.window.rootViewController = [LoginViewController new];
     }
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(void)setRootController:(UIViewController *)viewController{
+    self.window.rootViewController = viewController;
 }
 
 // APP进入后台
@@ -124,8 +134,8 @@
     CLLocation * newLoaction = locations[0];
     CLLocationCoordinate2D coordinate = newLoaction.coordinate;
     //    NSLog(@"旧的经度：%f，旧的维度：%f",oCoordinate.longitude,oCoordinate.latitude);
-    self.loc = [NSString stringWithFormat:@"%f",coordinate.longitude];
-    self.lat = [NSString stringWithFormat:@"%f",coordinate.latitude];;
+    self.longitude = [NSString stringWithFormat:@"%f",coordinate.longitude];
+    self.latitude = [NSString stringWithFormat:@"%f",coordinate.latitude];;
     [self.locationManager stopUpdatingLocation];
     //创建地理位置解码编码器对象
     CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
@@ -133,6 +143,7 @@
         for (CLPlacemark * place in placemarks) {
             self.location = place.locality;
             NSLog(@"%@",self.location);
+            continue;
         }
     }];
 }

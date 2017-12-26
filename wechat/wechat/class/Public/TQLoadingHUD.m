@@ -124,7 +124,7 @@
     for (UIView *view in views) {
         if([view isKindOfClass:class]){
             loading = (TQLoadingHUD *)view;
-            [UIView animateWithDuration:0.2 animations:^{
+            [UIView animateWithDuration:0.01 animations:^{
                 loading.contentView.alpha = 0;
             } completion:^(BOOL finished) {
                 if (finished) {

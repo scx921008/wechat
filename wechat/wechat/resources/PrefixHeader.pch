@@ -18,11 +18,16 @@
 #pragma mark - 头文件
 #import "AppDelegate.h"
 #import "AppUrl.h"
-#import "UserModel.h"
 #import "HTTPTools.h"
 #import "TQLoadingHUD.h"
 #import "CacheManager.h"
 #import "FriendsManger.h"
+
+#import "NavigationController.h"
+
+#import "UserModel.h"
+#import "AccountModel.h"
+
 
 #import "UIView+CALayer.h"
 #import "UIView+Frame.h"
@@ -34,14 +39,14 @@
 #import "UITextView+Placeholder.h"
 #import "MBProgressHUD+MJ.h"
 
-
+#import <YYKit/YYKit.h>
 #import <Masonry/Masonry.h>
 #import <MJRefresh/MJRefresh.h>
 #import <MJExtension/MJExtension.h>
 #import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import <TZImagePickerController/TZImagePickerController.h>
 
 #import <Hyphenate/Hyphenate.h>
 #pragma mark - APP全局配置
@@ -50,8 +55,7 @@
 
 
 
-/** 用户信息 */
-#define UserPath [PathDocument stringByAppendingPathComponent:@"user.archiver"]
+
 
 /* debug和release设置 */
 #ifdef DEBUG

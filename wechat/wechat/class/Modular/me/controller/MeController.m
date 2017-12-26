@@ -21,14 +21,27 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.user = [UserModel getUserInfo];
-    [self.dataSource addObjectsFromArray:[MeModel loadData]];
     
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 10)];
     [self.tableView registerNib:[UINib nibWithNibName:@"MeInfoTableCell" bundle:nil] forCellReuseIdentifier:@"MeInfoTableCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"MeTableViewCell" bundle:nil] forCellReuseIdentifier:@"MeTableViewCell"];
+    [self initData];
+}
+
+-(void)initData{
+    self.user = [UserModel getUserInfo];
+    [self.dataSource addObjectsFromArray:[MeModel loadData]];
+    [AccountModel getUserInfo:^(UserModel *user, NSString *msg, NSError *error) {
+        if (!error) {
+            if (!msg) {
+                self.user = user;
+                [self.tableView reloadData];
+            }
+        }
+    }];
     
 }
+
 #pragma mark -- UITableViewDataSource、UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.dataSource.count+1;
@@ -75,8 +88,15 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.0001;
+    if (@available(iOS 11.0, *)) {
+        return 0.0001;
+    }
+    if (section == 0) {
+        return 5;
+    }else{
+        return 15.0;
+    }
+    
 }
-
 
 @end

@@ -10,7 +10,7 @@
 
 @interface UserModel : NSObject
 
-@property (nonatomic,assign) NSInteger uid;
+@property (nonatomic,assign) NSInteger Id;
 @property (nonatomic,copy) NSString *account;
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic,assign) NSInteger sex;
@@ -19,19 +19,17 @@
 @property (nonatomic,copy) NSString *phone;
 @property (nonatomic,copy) NSString *email;
 @property (nonatomic,copy) NSString *address;
-@property (nonatomic,copy) NSString *last_time;
+@property (nonatomic,assign) NSInteger login_time;
 
-+(void)saveUser:(UserModel *)user;
+/** 保存自己的信息 */
++(void)saveUserInfo:(UserModel *)user;
+/** 获取自己的信息 */
 +(UserModel *)getUserInfo;
 
+/**获取好友信息*/
 +(void)getAllFirends:(void(^)(NSArray <UserModel *>*))callback;
 
-+(void)login:(NSString *)account
-withPassword:(NSString *)password
-    callback:(void(^)(NSString *msg,NSError *error))callback;
 
-+(void)registers:(NSString *)account
-    withPassword:(NSString *)password
-        withName:(NSString *)name
-        callback:(void(^)(NSString *msg,NSError *error))callback;
+
+
 @end

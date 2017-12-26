@@ -14,15 +14,21 @@
 
 @implementation HTTPTools
 
-+(void)GET:(NSString *)url parameters:(NSMutableDictionary *)parameters success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))err{
++(AFHTTPSessionManager *)manager{
     AppDelegate *app = sharedApp;
-
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:app.loc forHTTPHeaderField:@"loc"];
-    [manager.requestSerializer setValue:app.lat forHTTPHeaderField:@"lat"];
+    [manager.requestSerializer setValue:app.longitude forHTTPHeaderField:@"longitude"];
+    [manager.requestSerializer setValue:app.latitude forHTTPHeaderField:@"latitude"];
     [manager.requestSerializer setValue:app.system forHTTPHeaderField:@"system"];
     [manager.requestSerializer setValue:app.location forHTTPHeaderField:@"location"];
+    [manager.requestSerializer setValue:[AccountModel sharedAccount].token forHTTPHeaderField:@"token"];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    return manager;
+}
+
++(void)GET:(NSString *)url parameters:(NSMutableDictionary *)parameters success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))err{
+    
+    AFHTTPSessionManager *manager = [HTTPTools manager];
     [manager GET:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -31,14 +37,7 @@
 }
 
 +(void)POST:(NSString *)url parameters:(NSMutableDictionary *)parameters success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))err{
-    AppDelegate *app = sharedApp;
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:app.loc forHTTPHeaderField:@"loc"];
-    [manager.requestSerializer setValue:app.lat forHTTPHeaderField:@"lat"];
-    [manager.requestSerializer setValue:app.system forHTTPHeaderField:@"system"];
-    [manager.requestSerializer setValue:app.location forHTTPHeaderField:@"location"];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    AFHTTPSessionManager *manager = [HTTPTools manager];
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         success(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -55,6 +54,26 @@
     }];
 }
 
++(void)POST:(NSString *)url parameters:(NSMutableDictionary *)parameters imageDatas:(NSArray *)images success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
+    
+    AFHTTPSessionManager *manager = [HTTPTools manager];
+    
+    [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        int i = 0;
+        for (NSData *data in images) {
+            NSString *fileName = [NSString stringWithFormat:@"image%d.png",i];
+            NSString *name = [NSString stringWithFormat:@"image%d",i];
+            [formData appendPartWithFileData:data name:name fileName:fileName mimeType:@"image/jpeg"];
+            i++;
+        }
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
 
 
 +(void)addNetworkEvent:(void (^)(NetworkType))networkType changeNetwork:(void (^)(NetworkType))changeType{

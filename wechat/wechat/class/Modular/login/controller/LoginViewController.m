@@ -38,13 +38,21 @@
         [MBProgressHUD showError:@"密码不能为空!"];
         return;
     }
-    [UserModel login:account withPassword:password callback:^(NSString *msg, NSError *error) {
-        if (!msg && !error) {
-            UIWindow *window = KeyWindow;
-            window.rootViewController = [TabBarController new];
+    [TQLoadingHUD showLoadingHud:@"登入中..."];
+    [AccountModel login:account withPassword:password callback:^(UserModel *user, NSString *msg, NSError *error) {
+        if (!error) {
+            if (!msg) {
+                [TQLoadingHUD showSuccessHud:@"登入成功" completion:^(Boolean finish) {
+                    AppDelegate *app = sharedApp;
+                    [app setRootController:[TabBarController new]];
+                }];
+            }else{
+                [TQLoadingHUD showErrorHud:msg];
+            }
+        }else{
+            [TQLoadingHUD hideView];
         }
     }];
-    
 }
 
 - (IBAction)registerAcciont:(UIButton *)sender {
@@ -52,8 +60,6 @@
     [self presentViewController:[RegisterViewController new] animated:YES completion:nil];
     
 }
-
-
 
 
 @end

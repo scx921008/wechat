@@ -16,7 +16,7 @@ static FMDatabaseQueue *_db;
     NSLog(@"dataBasePath==%@",dataBasePath);
     _db = [FMDatabaseQueue databaseQueueWithPath:dataBasePath];
     [_db inDatabase:^(FMDatabase *db) {
-        NSString *sqlStr = @"CREATE TABLE IF NOT EXISTS friends (id integer PRIMARY KEY autoincrement,account varchar,name varchar default null,sex int default null,avatar varchar default null,explains varchar default null,phone varchar default null,email varchar default null,address varchar default null,last_time int default null)";
+        NSString *sqlStr = @"CREATE TABLE IF NOT EXISTS friends (id integer PRIMARY KEY autoincrement,account varchar,name varchar default null,sex int default null,avatar varchar default null,explains varchar default null,phone varchar default null,email varchar default null,address varchar default null,login_time int default null)";
         if (![db executeUpdate:sqlStr]){
             NSLog(@"建表失败!");
         }
@@ -35,7 +35,7 @@ static FMDatabaseQueue *_db;
 +(void)insterFriends:(UserModel *)user{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [_db inDatabase:^(FMDatabase * _Nonnull db) {
-            Boolean status = [db executeUpdateWithFormat:@"replace into friends(account,name,sex,avatar,explains,phone,email,address,last_time) VALUES (%@,%@,%ld,%@,%@,%@,%@,%@,%@)",user.account,user.name,user.sex,user.avatar,user.explains,user.phone,user.email,user.address,user.last_time];
+            Boolean status = [db executeUpdateWithFormat:@"replace into friends(account,name,sex,avatar,explains,phone,email,address,login_time) VALUES (%@,%@,%ld,%@,%@,%@,%@,%@,%ld)",user.account,user.name,user.sex,user.avatar,user.explains,user.phone,user.email,user.address,user.login_time];
             if (!status) {
                 NSLog(@"保存好友失败");
             }
@@ -68,7 +68,7 @@ static FMDatabaseQueue *_db;
     firend.phone = [set stringForColumn:@"phone"];
     firend.email = [set stringForColumn:@"email"];
     firend.address = [set stringForColumn:@"address"];
-    firend.last_time = [set stringForColumn:@"last_time"];
+    firend.login_time = [set stringForColumn:@"login_time"];
     return firend;
 }
 

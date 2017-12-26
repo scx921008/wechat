@@ -14,9 +14,12 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic,copy) NSString *loc;
-@property (nonatomic,copy) NSString *lat;
-@property (nonatomic,copy) NSString *system;
+@property (nonatomic,copy) NSString *longitude;
+@property (nonatomic,copy) NSString *latitude;
 @property (nonatomic,copy) NSString *location;
+@property (nonatomic,copy) NSString *system;
+
+-(void)setRootController:(UIViewController *)viewController;
+
 @end
 

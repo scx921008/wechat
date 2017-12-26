@@ -9,6 +9,7 @@
 #import "FriendsCircleController.h"
 #import "FriendsCircleHeaderView.h"
 #import "RefreshView.h"
+#import "TweetsViewController.h"
 @interface FriendsCircleController (){
     CGFloat _beginOffsetY;
     Boolean _isRefresh;
@@ -16,7 +17,7 @@
 }
 @property (nonatomic,strong) FriendsCircleHeaderView *headerView;
 @property (nonatomic,strong) RefreshView *refreshView;
-
+@property (nonatomic,strong) UIImageView *imageView;
 @end
 
 @implementation FriendsCircleController
@@ -40,19 +41,37 @@ singleton_implementation(FriendsCircleController)
     
     [self.view addSubview:self.refreshView];
     
-    UIButton *button  = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"barbuttonicon_Camera"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(postStatus) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+    
+    self.imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"barbuttonicon_Camera"]];
+    self.imageView.userInteractionEnabled = YES;
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:self.imageView];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    //点击手势
+    UITapGestureRecognizer *clickGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(postTweets)];
+    clickGesture.numberOfTapsRequired = 1;
+    [self.imageView addGestureRecognizer:clickGesture];
+    
+    UILongPressGestureRecognizer *logGesture = [[UILongPressGestureRecognizer  alloc]initWithTarget:self action:@selector(longPressChange)];
+    logGesture.minimumPressDuration = 1;
+    [self.view addGestureRecognizer:logGesture];
+    
 }
 
--(void)postStatus{
-    [self.refreshView endRefresh];
-    [UIView animateWithDuration:0.2 animations:^{
-        self.refreshView.y = TopHeight - 30;
-    }];
+-(void)longPressChange{
+    NSLog(@"长按");
 }
+-(void)postTweets{
+    NavigationController *navTweets = [[NavigationController alloc]initWithRootViewController:[TweetsViewController new]];
+    [self presentViewController:navTweets animated:YES completion:nil];
+}
+
+//-(void)postStatus{
+//    [self.refreshView endRefresh];
+//    [UIView animateWithDuration:0.2 animations:^{
+//        self.refreshView.y = TopHeight - 30;
+//    }];
+//}
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     _viewDidAppear = YES;

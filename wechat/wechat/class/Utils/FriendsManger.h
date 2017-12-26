@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "UserModel.h"
 @interface FriendsManger : NSObject
+
 +(void)saveFriends:(NSArray *)users;
+
 +(void)getFriends:(void(^)(NSArray <UserModel *>* firends))callback;
+
 @end

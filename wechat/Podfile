@@ -10,4 +10,5 @@ pod 'TZImagePickerController'
 pod 'MBProgressHUD'
 pod 'SDWebImage'
 pod 'FMDB', '~> 2.7.2'
+pod 'YYKit'
 end

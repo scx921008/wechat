@@ -27,7 +27,8 @@ parameters:(NSMutableDictionary *)parameters
    success:(void(^)(NSDictionary *success))success
    failure:(void(^)(NSError *error))err;
 
-
++(void)POST:(NSString *)url parameters:(NSMutableDictionary *)parameters imageDatas:(NSArray *)images success:(void(^)(NSDictionary *success))success
+    failure:(void(^)(NSError *error))failure;
 
 +(void)addNetworkEvent:(void(^)(NetworkType currentType))networkType changeNetwork:(void(^)(NetworkType changeType))changeType;
 

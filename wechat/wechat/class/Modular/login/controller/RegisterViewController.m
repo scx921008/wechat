@@ -49,9 +49,18 @@
         [MBProgressHUD showError:@"昵称长度不能大于10位!"];
         return;
     }
-    [UserModel registers:account withPassword:password withName:name callback:^(NSString *msg, NSError *error) {
-        if (!msg && !error) {
-            [self dismissViewController];
+    [TQLoadingHUD showLoadingHud:@"注册中..."];
+    [AccountModel registers:account withPassword:password withName:name callback:^(NSInteger code, NSString *msg, NSError *error) {
+        if (!error) {
+            if (code == 200) {
+                [TQLoadingHUD showSuccessHud:@"注册成功!" completion:^(Boolean finish) {
+                    [self dismissViewController];
+                }];
+            }else{
+                [TQLoadingHUD showErrorHud:msg];
+            }
+        }else{
+            [TQLoadingHUD hideView];
         }
     }];
 }

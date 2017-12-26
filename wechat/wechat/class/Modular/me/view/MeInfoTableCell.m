@@ -24,7 +24,7 @@
     _user = user;
     [self.avatar sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
     self.name.text = user.name;
-    self.account.text = [NSString stringWithFormat:@"账号:%@",user.account];
+    self.account.text = [NSString stringWithFormat:@"账号:%@",[AccountModel sharedAccount].account];
 }
 
 @end

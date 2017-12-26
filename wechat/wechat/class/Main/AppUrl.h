@@ -12,12 +12,15 @@
 #import <Foundation/Foundation.h>
 
 /**  主域名 */
-static NSString *domain = @"http://192.168.1.2/";
+static NSString *domain = @"http://192.168.1.2/api/";
 /** 注册 */
-static NSString *REGISTERURL = @"im/api/user/register";
+static NSString *REGISTERURL = @"account/register";
 /** 登入 */
-static NSString *LOGINURL = @"im/api/user/login";
+static NSString *LOGINURL = @"account/login";
+/** 获取账号信息 */
+static NSString *GETUSERINFOURL = @"user/getUserInfo";
 /** 获取所有的好友 */
-static NSString *GETAllFIRENDSURL = @"im/api/user/getFriends";
-
+static NSString *GETAllFIRENDSURL = @"user/getFriends";
+/** 发表帖子带图片 */
+static NSString *POSTTOPICURL = @"topic/postTopic";
 #endif /* Constant_h */
