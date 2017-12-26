@@ -23,4 +23,17 @@ static NSString *GETUSERINFOURL = @"user/getUserInfo";
 static NSString *GETAllFIRENDSURL = @"user/getFriends";
 /** 发表帖子带图片 */
 static NSString *POSTTOPICURL = @"topic/postTopic";
+/** 获取帖子列表 */
+static NSString *GETTOPICLISTURL = @"topic/getTopic";
+
+
+
+
+
+
+
+
+
+
+
 #endif /* Constant_h */

@@ -7,9 +7,11 @@
 //
 
 #import "FriendsCircleController.h"
-#import "FriendsCircleHeaderView.h"
-#import "RefreshView.h"
 #import "TweetsViewController.h"
+#import "FriendsCircleHeaderView.h"
+#import "FriendsCircleCell.h"
+#import "RefreshView.h"
+#import "TopicModel.h"
 @interface FriendsCircleController (){
     CGFloat _beginOffsetY;
     Boolean _isRefresh;
@@ -27,7 +29,16 @@ singleton_implementation(FriendsCircleController)
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self loadData];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    _viewDidAppear = YES;
+}
 
+#pragma mark -- init
 -(void)initSubView{
     [super initSubView];
     self.view.backgroundColor = HexRGB(0x2D3132);
@@ -58,6 +69,40 @@ singleton_implementation(FriendsCircleController)
     
 }
 
+
+/** 加载数据  */
+-(void)loadData{
+    [self startRefreshAnimate];
+    [TopicModelF loadDataPage:self.page isCache:NO callback:^(NSArray<TopicModelF *> *models, NSString *msg, NSError *error) {
+        [self stopRefreshAnimate];
+        if (!error) {
+            if (!msg) {
+                [self.dataSource removeAllObjects];
+                [self.dataSource addObjectsFromArray:models];
+                [self reloadData];
+            }else{
+                NSLog(@"%@",msg);
+            }
+        }else{
+            NSLog(@"服务器异常");
+        }
+    }];
+}
+/** 刷新动画 */
+-(void)startRefreshAnimate{
+    [self.refreshView startRefresh];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.refreshView.y = TopHeight + 30;
+    }];
+}
+/** 结刷新 */
+-(void)stopRefreshAnimate{
+    [self.refreshView endRefresh];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.refreshView.y = TopHeight - 30;
+    }];
+}
+/** 发表文章 */
 -(void)longPressChange{
     NSLog(@"长按");
 }
@@ -66,16 +111,8 @@ singleton_implementation(FriendsCircleController)
     [self presentViewController:navTweets animated:YES completion:nil];
 }
 
-//-(void)postStatus{
-//    [self.refreshView endRefresh];
-//    [UIView animateWithDuration:0.2 animations:^{
-//        self.refreshView.y = TopHeight - 30;
-//    }];
-//}
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    _viewDidAppear = YES;
-}
+
+#pragma mark - UIScrollViewDelegate
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     _beginOffsetY = scrollView.contentOffset.y;
 }
@@ -84,29 +121,37 @@ singleton_implementation(FriendsCircleController)
     CGFloat offsetY = scrollView.contentOffset.y;
     NSInteger y = (NSInteger)(_beginOffsetY-offsetY);
     [self.refreshView setRotation:y];
-    if(y < 60 && !self.refreshView.isRefresh){
-        self.refreshView.y = (TopHeight + y) - 30;
-    }else{
-        if (_viewDidAppear) {
-            [self.refreshView startRefresh];
-        }
-    }
+//    if (offsetY < - 334) {
+//        if(!self.refreshView.isRefresh){
+//            self.refreshView.y = (TopHeight + (-334-offsetY)) - 30;
+//        }else{
+//            if (_viewDidAppear) {
+//                if (!self.refreshView.isRefresh) {
+//                    [self loadData];
+//                }
+//            }
+//        }
+//    }
 }
 
-
+#pragma mark -- UITableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return self.dataSource.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return [UITableViewCell new];
+    FriendsCircleCell *cell = [FriendsCircleCell cellWithTableView:tableView withIdentifier:[FriendsCircleCell cellIndentifier]];
+    cell.modelF = self.dataSource[indexPath.row];
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    TopicModelF *modelF = self.dataSource[indexPath.row];
+    return modelF.cellHeight;
 }
 
 
 
-
-
-
+#pragma mark - lazy
 -(FriendsCircleHeaderView *)headerView{
     if(!_headerView){
         _headerView = [[FriendsCircleHeaderView alloc]initWithFrame:CGRectMake(0,-330-TopHeight,ScreenWidth, 320+TopHeight)];

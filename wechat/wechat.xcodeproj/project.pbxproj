@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2951452B1FEC102300359F09 /* RefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2951452A1FEC102300359F09 /* RefreshView.m */; };
+		299D8C0B1FF2A7D30065E071 /* FriendsCircleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 299D8C0A1FF2A7D30065E071 /* FriendsCircleCell.m */; };
+		299D8C0E1FF2B71B0065E071 /* PositionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 299D8C0D1FF2B71B0065E071 /* PositionView.m */; };
+		299D8C121FF2B72F0065E071 /* PositionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299D8C111FF2B72F0065E071 /* PositionView.xib */; };
 		29A078791FEE7C6800F386C3 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A078781FEE7C6800F386C3 /* TopicModel.m */; };
 		29A0787C1FEE951200F386C3 /* AccountlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A0787B1FEE951200F386C3 /* AccountlModel.m */; };
 		29A078981FEEE88C00F386C3 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A078961FEEE88C00F386C3 /* TweetsViewController.m */; };
@@ -85,6 +88,11 @@
 		039282B7BCA8C695D3164DE5 /* Pods-wechat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wechat.release.xcconfig"; path = "Pods/Target Support Files/Pods-wechat/Pods-wechat.release.xcconfig"; sourceTree = "<group>"; };
 		295145291FEC102300359F09 /* RefreshView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefreshView.h; sourceTree = "<group>"; };
 		2951452A1FEC102300359F09 /* RefreshView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefreshView.m; sourceTree = "<group>"; };
+		299D8C091FF2A7D30065E071 /* FriendsCircleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsCircleCell.h; sourceTree = "<group>"; };
+		299D8C0A1FF2A7D30065E071 /* FriendsCircleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsCircleCell.m; sourceTree = "<group>"; };
+		299D8C0C1FF2B71B0065E071 /* PositionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PositionView.h; sourceTree = "<group>"; };
+		299D8C0D1FF2B71B0065E071 /* PositionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PositionView.m; sourceTree = "<group>"; };
+		299D8C111FF2B72F0065E071 /* PositionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PositionView.xib; sourceTree = "<group>"; };
 		29A078771FEE7C6800F386C3 /* TopicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicModel.h; sourceTree = "<group>"; };
 		29A078781FEE7C6800F386C3 /* TopicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicModel.m; sourceTree = "<group>"; };
 		29A0787A1FEE951200F386C3 /* AccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountModel.h; sourceTree = "<group>"; };
@@ -511,6 +519,11 @@
 				29EA696B1FEABB9400AB1DF1 /* FriendsCircleHeaderView.m */,
 				295145291FEC102300359F09 /* RefreshView.h */,
 				2951452A1FEC102300359F09 /* RefreshView.m */,
+				299D8C091FF2A7D30065E071 /* FriendsCircleCell.h */,
+				299D8C0A1FF2A7D30065E071 /* FriendsCircleCell.m */,
+				299D8C0C1FF2B71B0065E071 /* PositionView.h */,
+				299D8C0D1FF2B71B0065E071 /* PositionView.m */,
+				299D8C111FF2B72F0065E071 /* PositionView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -738,6 +751,7 @@
 				29FC05E91FE651B100EE7292 /* LaunchScreen.storyboard in Resources */,
 				29FC06711FE66EAC00EE7292 /* MeInfoTableCell.xib in Resources */,
 				29FC05EA1FE651B100EE7292 /* Info.plist in Resources */,
+				299D8C121FF2B72F0065E071 /* PositionView.xib in Resources */,
 				29FC06861FE6758A00EE7292 /* LoginViewController.xib in Resources */,
 				29A078991FEEE88C00F386C3 /* TweetsViewController.xib in Resources */,
 			);
@@ -836,6 +850,7 @@
 				29FC05EB1FE651B100EE7292 /* main.m in Sources */,
 				29FC069A1FE692B100EE7292 /* ALLoadingView.m in Sources */,
 				29FC062F1FE6538500EE7292 /* iToast.m in Sources */,
+				299D8C0E1FF2B71B0065E071 /* PositionView.m in Sources */,
 				29FC06701FE66EAC00EE7292 /* MeInfoTableCell.m in Sources */,
 				29FC068E1FE684B100EE7292 /* HTTPTools.m in Sources */,
 				29EA696C1FEABB9400AB1DF1 /* FriendsCircleHeaderView.m in Sources */,
@@ -855,6 +870,7 @@
 				29FC06231FE6536700EE7292 /* UIDevice+Device.m in Sources */,
 				29FC06211FE6536700EE7292 /* NSString+Extension.m in Sources */,
 				29A078791FEE7C6800F386C3 /* TopicModel.m in Sources */,
+				299D8C0B1FF2A7D30065E071 /* FriendsCircleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
