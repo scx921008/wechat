@@ -10,6 +10,8 @@
 #import "ImageCollectionViewCell.h"
 #define ImageWidth (ScreenWidth - 30 - 15)/4
 @interface TweetsViewController ()<YYTextViewDelegate,TZImagePickerControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewConstraint;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 /** 编辑区域 */
 @property (weak, nonatomic) IBOutlet UIView *editView;
 /** 图片容器 */
@@ -33,7 +35,9 @@
 /** 发送按钮 */
 @property (nonatomic,strong) UIBarButtonItem *postItem;
 /** TextView */
-@property (nonatomic, strong) YYTextView   *edittingArea;
+//@property (nonatomic, weak) YYTextView   *edittingArea;
+@property (weak, nonatomic) IBOutlet YYTextView *edittingArea;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @property (nonatomic, strong) ImageCollectionViewCell *moveImageCell; //用于记录移动的Cell
 
@@ -76,8 +80,13 @@
 
 -(void)initSubView{
     
-    YYTextView* edittingArea = [[YYTextView alloc] initWithFrame:CGRectMake(8, 8, kScreenSize.width - 16, self.view.width / 3  - 8)];
-    _edittingArea = edittingArea;
+    if (@available(iOS 11.0, *)) {
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        self.scrollViewConstraint.constant = TopHeight;
+    }
+//    YYTextView* edittingArea = [[YYTextView alloc] initWithFrame:CGRectMake(8, 8, kScreenSize.width - 16, self.view.width / 3  - 8)];
+//    _edittingArea = edittingArea;
     _edittingArea.placeholderFont = [UIFont systemFontOfSize:16];
     _edittingArea.placeholderTextColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
     _edittingArea.autocorrectionType = UITextAutocorrectionTypeDefault;
@@ -90,8 +99,7 @@
     _edittingArea.typingAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor],
                                        NSFontAttributeName : [UIFont systemFontOfSize:16]};
     _edittingArea.delegate = self;
-    [self.editView addSubview:self.edittingArea];
-    
+
     UILongPressGestureRecognizer *longPressGR = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(moveClick:)];
     longPressGR.delegate = self;
     longPressGR.minimumPressDuration = 0.5;
@@ -138,6 +146,15 @@
     }else{
         self.postItem.enabled = YES;
     }
+    CGFloat maxY = self.remindView.maxY;
+    if (maxY > self.toolbar.y) {
+        CGSize size = self.scrollView.contentSize;
+        size.height += maxY - self.toolbar.y;
+        self.scrollView.contentSize = size;
+    }else{
+        self.scrollView.contentSize = self.scrollView.size;
+    }
+    NSLog(@"remindView maxY %@",NSStringFromCGRect(self.scrollView.frame));
 }
 #pragma mark - 发表
 // 发表

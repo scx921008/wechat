@@ -7,12 +7,16 @@
 //
 
 #import "FriendsCircleCell.h"
+#import "PositionView.h"
 @interface FriendsCircleCell()
 @property (nonatomic,strong) UIImageView *avatarImage;
 @property (nonatomic,strong) UILabel *nameLabel;
 @property (nonatomic,strong) UILabel *contentLabel;
 @property (nonatomic,strong) UILabel *creteTimeLabel;
 @property (nonatomic,strong) UILabel *locationLabel;
+@property (nonatomic,strong) UIButton *operateMore;
+@property (nonatomic,strong) PositionView *postionView;
+@property (nonatomic) NSLayoutConstraint *postionConstraint;
 
 @end
 @implementation FriendsCircleCell
@@ -59,12 +63,48 @@
     self.locationLabel.font = Font12;
     [self.contentView addSubview:self.locationLabel];
     
+    self.operateMore = [UIButton new];
+    [self.operateMore setImage:[UIImage imageNamed:@"AlbumOperateMore"] forState:UIControlStateNormal];
+    [self.operateMore addTarget:self action:@selector(showOperate) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.operateMore];
+    
+    [self.operateMore mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView).offset(-10);
+        make.bottom.equalTo(self.contentView).offset(-10);
+    }];
+    
+    self.postionView = [PositionView positionView];
+    [self.contentView addSubview:self.postionView];
+    
+    self.postionConstraint = [NSLayoutConstraint constraintWithItem:self.postionView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:0];
+    [self addConstraint:self.postionConstraint];
+
+    [self.postionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.operateMore.mas_left).offset(0);
+        make.centerY.equalTo(self.operateMore);
+        make.height.mas_offset(@40);
+    }];
+    
+   
+    
     UIView *view = [UIView new];
     view.backgroundColor = GroupTableViewColor;
     [self.contentView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.contentView);
         make.height.mas_offset(@1);
+    }];
+}
+
+-(void)showOperate{
+    if (self.postionConstraint.constant >= 180) {
+         self.postionConstraint.constant = 0;
+    }else{
+        self.postionConstraint.constant = 180;
+    }
+    [self setNeedsUpdateConstraints];
+    [UIView animateWithDuration:0.2 animations:^{
+        [self layoutIfNeeded];
     }];
 }
 
@@ -91,6 +131,7 @@
     self.creteTimeLabel.text = model.timeStr;
     self.creteTimeLabel.frame = modelF.timeF;
 }
+
 
 
 +(NSString *)cellIndentifier{

@@ -10,4 +10,6 @@
 
 @interface PositionView : UIView
 
++(instancetype)positionView;
+
 @end

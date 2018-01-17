@@ -8,6 +8,7 @@
 
 #import "FriendsCircleController.h"
 #import "TweetsViewController.h"
+#import "TweetViewController.h"
 #import "FriendsCircleHeaderView.h"
 #import "FriendsCircleCell.h"
 #import "RefreshView.h"
@@ -107,7 +108,7 @@ singleton_implementation(FriendsCircleController)
     NSLog(@"长按");
 }
 -(void)postTweets{
-    NavigationController *navTweets = [[NavigationController alloc]initWithRootViewController:[TweetsViewController new]];
+    NavigationController *navTweets = [[NavigationController alloc]initWithRootViewController:[TweetViewController new]];
     [self presentViewController:navTweets animated:YES completion:nil];
 }
 

@@ -14,14 +14,15 @@
 		29A078791FEE7C6800F386C3 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A078781FEE7C6800F386C3 /* TopicModel.m */; };
 		29A0787C1FEE951200F386C3 /* AccountlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A0787B1FEE951200F386C3 /* AccountlModel.m */; };
 		29A078981FEEE88C00F386C3 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A078961FEEE88C00F386C3 /* TweetsViewController.m */; };
-		29A078991FEEE88C00F386C3 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29A078971FEEE88C00F386C3 /* TweetsViewController.xib */; };
 		29A0789C1FEF84DF00F386C3 /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A0789B1FEF84DE00F386C3 /* ImageCollectionViewCell.m */; };
+		29CA83E11FF3DCEB0034D29E /* ALLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29CA83E01FF3DCEB0034D29E /* ALLoadingView.m */; };
 		29E571031FE7FF840064B321 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E571021FE7FF840064B321 /* BaseTableViewController.m */; };
 		29E572A41FE80E860064B321 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E572A31FE80E7F0064B321 /* AVFoundation.framework */; };
 		29E572A61FE80EAF0064B321 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E572A51FE80EA50064B321 /* UIKit.framework */; };
 		29E572A81FE80EDD0064B321 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E572A71FE80ED70064B321 /* Foundation.framework */; };
 		29EA69691FEABAD500AB1DF1 /* FriendsCircleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EA69681FEABAD500AB1DF1 /* FriendsCircleController.m */; };
 		29EA696C1FEABB9400AB1DF1 /* FriendsCircleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EA696B1FEABB9400AB1DF1 /* FriendsCircleHeaderView.m */; };
+		29EF19B61FF40F4A00AE015A /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EF19B51FF40F4A00AE015A /* TweetViewController.m */; };
 		29FC05E81FE651B100EE7292 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29FC05DE1FE651B100EE7292 /* Assets.xcassets */; };
 		29FC05E91FE651B100EE7292 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29FC05DF1FE651B100EE7292 /* LaunchScreen.storyboard */; };
 		29FC05EA1FE651B100EE7292 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29FC05E11FE651B100EE7292 /* Info.plist */; };
@@ -69,7 +70,6 @@
 		29FC068B1FE6759C00EE7292 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29FC06891FE6759C00EE7292 /* RegisterViewController.xib */; };
 		29FC068E1FE684B100EE7292 /* HTTPTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC068C1FE684B000EE7292 /* HTTPTools.m */; };
 		29FC06961FE6929D00EE7292 /* TQLoadingHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC06941FE6929D00EE7292 /* TQLoadingHUD.m */; };
-		29FC069A1FE692B100EE7292 /* ALLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC06991FE692B100EE7292 /* ALLoadingView.m */; };
 		29FC069D1FE69D8800EE7292 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC069C1FE69D8800EE7292 /* UserModel.m */; };
 		29FC06B71FE6A93800EE7292 /* FriendsManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC06B61FE6A93800EE7292 /* FriendsManger.m */; };
 		29FC06BA1FE6A96A00EE7292 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 29FC06B81FE6A96A00EE7292 /* CacheManager.m */; };
@@ -99,9 +99,10 @@
 		29A0787B1FEE951200F386C3 /* AccountlModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountlModel.m; sourceTree = "<group>"; };
 		29A078951FEEE88C00F386C3 /* TweetsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
 		29A078961FEEE88C00F386C3 /* TweetsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
-		29A078971FEEE88C00F386C3 /* TweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetsViewController.xib; sourceTree = "<group>"; };
 		29A0789A1FEF84DE00F386C3 /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
 		29A0789B1FEF84DE00F386C3 /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
+		29CA83DF1FF3DCEB0034D29E /* ALLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALLoadingView.h; sourceTree = "<group>"; };
+		29CA83E01FF3DCEB0034D29E /* ALLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALLoadingView.m; sourceTree = "<group>"; };
 		29E571011FE7FF840064B321 /* BaseTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		29E571021FE7FF840064B321 /* BaseTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		29E572A31FE80E7F0064B321 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -111,6 +112,8 @@
 		29EA69681FEABAD500AB1DF1 /* FriendsCircleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsCircleController.m; sourceTree = "<group>"; };
 		29EA696A1FEABB9400AB1DF1 /* FriendsCircleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsCircleHeaderView.h; sourceTree = "<group>"; };
 		29EA696B1FEABB9400AB1DF1 /* FriendsCircleHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsCircleHeaderView.m; sourceTree = "<group>"; };
+		29EF19B41FF40F4A00AE015A /* TweetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
+		29EF19B51FF40F4A00AE015A /* TweetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
 		29FC05C41FE6503400EE7292 /* wechat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wechat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29FC05DE1FE651B100EE7292 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29FC05E01FE651B100EE7292 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -199,8 +202,6 @@
 		29FC068F1FE6889F00EE7292 /* AppUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUrl.h; sourceTree = "<group>"; };
 		29FC06941FE6929D00EE7292 /* TQLoadingHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQLoadingHUD.m; sourceTree = "<group>"; };
 		29FC06951FE6929D00EE7292 /* TQLoadingHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQLoadingHUD.h; sourceTree = "<group>"; };
-		29FC06981FE692B100EE7292 /* ALLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALLoadingView.h; sourceTree = "<group>"; };
-		29FC06991FE692B100EE7292 /* ALLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALLoadingView.m; sourceTree = "<group>"; };
 		29FC069B1FE69D8800EE7292 /* UserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		29FC069C1FE69D8800EE7292 /* UserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		29FC06B51FE6A93800EE7292 /* FriendsManger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsManger.h; sourceTree = "<group>"; };
@@ -265,7 +266,8 @@
 			children = (
 				29A078951FEEE88C00F386C3 /* TweetsViewController.h */,
 				29A078961FEEE88C00F386C3 /* TweetsViewController.m */,
-				29A078971FEEE88C00F386C3 /* TweetsViewController.xib */,
+				29EF19B41FF40F4A00AE015A /* TweetViewController.h */,
+				29EF19B51FF40F4A00AE015A /* TweetViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -277,6 +279,16 @@
 				29A0789B1FEF84DE00F386C3 /* ImageCollectionViewCell.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		29CA83DE1FF3DCEB0034D29E /* ALLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				29CA83DF1FF3DCEB0034D29E /* ALLoadingView.h */,
+				29CA83E01FF3DCEB0034D29E /* ALLoadingView.m */,
+			);
+			name = ALLoadingView;
+			path = ../../../../../ALLoadingView/ALLoadingView/ALLoadingView;
 			sourceTree = "<group>";
 		};
 		29FC05BB1FE6503300EE7292 = {
@@ -391,7 +403,7 @@
 		29FC05F61FE6525200EE7292 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				29FC06971FE692B100EE7292 /* ALLoadingView */,
+				29CA83DE1FF3DCEB0034D29E /* ALLoadingView */,
 				29FC06951FE6929D00EE7292 /* TQLoadingHUD.h */,
 				29FC06941FE6929D00EE7292 /* TQLoadingHUD.m */,
 			);
@@ -632,16 +644,6 @@
 			path = view;
 			sourceTree = "<group>";
 		};
-		29FC06971FE692B100EE7292 /* ALLoadingView */ = {
-			isa = PBXGroup;
-			children = (
-				29FC06981FE692B100EE7292 /* ALLoadingView.h */,
-				29FC06991FE692B100EE7292 /* ALLoadingView.m */,
-			);
-			name = ALLoadingView;
-			path = ../../../../../crm/CRM/class/public/view/ALLoadingView;
-			sourceTree = "<group>";
-		};
 		29FC06CC1FE6D81600EE7292 /* chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,7 +755,6 @@
 				29FC05EA1FE651B100EE7292 /* Info.plist in Resources */,
 				299D8C121FF2B72F0065E071 /* PositionView.xib in Resources */,
 				29FC06861FE6758A00EE7292 /* LoginViewController.xib in Resources */,
-				29A078991FEEE88C00F386C3 /* TweetsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,6 +814,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29FC06D71FE6D85400EE7292 /* ChatView.m in Sources */,
+				29CA83E11FF3DCEB0034D29E /* ALLoadingView.m in Sources */,
 				29A0789C1FEF84DF00F386C3 /* ImageCollectionViewCell.m in Sources */,
 				29FC05F91FE6525300EE7292 /* ViewController.m in Sources */,
 				29FC06611FE65FC400EE7292 /* BaseSearchTableViewController.m in Sources */,
@@ -835,6 +837,7 @@
 				29FC06C51FE6C7D100EE7292 /* ContactsIndexView.m in Sources */,
 				29A078981FEEE88C00F386C3 /* TweetsViewController.m in Sources */,
 				2951452B1FEC102300359F09 /* RefreshView.m in Sources */,
+				29EF19B61FF40F4A00AE015A /* TweetViewController.m in Sources */,
 				29FC067A1FE6701200EE7292 /* MeTableViewCell.m in Sources */,
 				29FC064C1FE6587100EE7292 /* MeController.m in Sources */,
 				29FC06201FE6536700EE7292 /* NSDate+Extension.m in Sources */,
@@ -848,7 +851,6 @@
 				29FC06221FE6536700EE7292 /* PDBlurImageEffects.m in Sources */,
 				29FC06271FE6536700EE7292 /* UIView+CALayer.m in Sources */,
 				29FC05EB1FE651B100EE7292 /* main.m in Sources */,
-				29FC069A1FE692B100EE7292 /* ALLoadingView.m in Sources */,
 				29FC062F1FE6538500EE7292 /* iToast.m in Sources */,
 				299D8C0E1FF2B71B0065E071 /* PositionView.m in Sources */,
 				29FC06701FE66EAC00EE7292 /* MeInfoTableCell.m in Sources */,
